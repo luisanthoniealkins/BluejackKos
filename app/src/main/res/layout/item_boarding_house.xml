@@ -3,4 +3,27 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/id_item_imv_preview"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/id_item_tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"/>
+
+    <TextView
+        android:id="@+id/id_item_tv_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price"/>
+
+    <TextView
+        android:id="@+id/id_item_tv_facility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facility"/>
+
 </LinearLayout>

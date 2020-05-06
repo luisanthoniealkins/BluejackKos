@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+    <ImageView
+        android:id="@+id/id_detail_imv_preview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/id_detail_tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"/>
+
+    <TextView
+        android:id="@+id/id_detail_tv_facility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facility"/>
+
+    <TextView
+        android:id="@+id/id_detail_tv_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price"/>
+
+    <TextView
+        android:id="@+id/id_detail_tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"/>
+
+    <TextView
+        android:id="@+id/id_detail_tv_latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Latitude"/>
+
+    <TextView
+        android:id="@+id/id_detail_tv_longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Longitude"/>
+
+    <Button
+        android:id="@+id/id_detail_btn_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Maps"
+        android:onClick="clickMaps"/>
+
+
+    <Button
+        android:id="@+id/id_detail_btn_booking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Booking"
+        android:onClick="clickBooking"/>
+
+</LinearLayout>
