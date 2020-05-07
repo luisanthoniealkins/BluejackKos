@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private void init(){
         mETUsername = findViewById(R.id.id_login_edt_username);
         mETPassword = findViewById(R.id.id_login_edt_password);
+        
     }
 
     @Override
