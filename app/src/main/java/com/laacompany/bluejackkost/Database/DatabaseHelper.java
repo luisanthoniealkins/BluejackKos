@@ -1,8 +1,10 @@
 package com.laacompany.bluejackkost.Database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 import androidx.annotation.Nullable;
 
@@ -37,6 +39,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS "+ DBSchema.BookingTable.NAME);
+        onCreate(db);
     }
+
+
+
+
+
+
+
 }
