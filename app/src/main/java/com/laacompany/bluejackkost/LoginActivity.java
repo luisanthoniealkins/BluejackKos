@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-}
+    }
 
     private Cursor getcursor(int id) {
         String query_select = "SELECT * FROM " + DBSchema.UserTable.NAME + " WHERE " + DBSchema.UserTable.Cols.USER_ID + " = " + id;
@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void clickRegister(View view) {
-    Intent regis = new Intent(this,RegisterActivity.class);
-    startActivity(regis);
+        Intent intent = RegisterActivity.newIntent(this);
+        startActivity(intent);
     }
 }

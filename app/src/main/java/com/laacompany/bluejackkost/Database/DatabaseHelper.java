@@ -25,7 +25,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " _id integer primary key autoincrement, " +
                 DBSchema.UserTable.Cols.USER_ID + ", " +
                 DBSchema.UserTable.Cols.USERNAME + ", " +
-                DBSchema.UserTable.Cols.PASSWORD +
+                DBSchema.UserTable.Cols.PASSWORD + ", " +
+                DBSchema.UserTable.Cols.PHONE + ", " +
+                DBSchema.UserTable.Cols.DOB + ", " +
+                DBSchema.UserTable.Cols.GENDER +
                 ")");
 
         db.execSQL("create table " + DBSchema.BookingTable.NAME + "(" +
