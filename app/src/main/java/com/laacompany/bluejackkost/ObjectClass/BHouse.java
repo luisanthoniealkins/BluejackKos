@@ -1,19 +1,28 @@
-package com.laacompany.bluejackkost;
+package com.laacompany.bluejackkost.ObjectClass;
 
 public class BHouse {
 
-    private String name, facility, description, imageURL;
-    private int price;
+    private String name, facility, address, imageURL;
+    private int price, id;
     private double latitude, longitude;
 
-    public BHouse(String imageURL, String name, String facility, int price, String description, double latitude, double longitude) {
+    public BHouse(int id, String imageURL, String name, String facility, int price, String address, double latitude, double longitude) {
+        this.id = id;
         this.imageURL = imageURL;
         this.name = name;
         this.facility = facility;
         this.price = price;
-        this.description = description;
+        this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImageURL() {
@@ -40,12 +49,12 @@ public class BHouse {
         this.facility = facility;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getPrice() {

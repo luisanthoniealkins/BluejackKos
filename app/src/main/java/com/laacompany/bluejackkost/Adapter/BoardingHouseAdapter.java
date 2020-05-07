@@ -1,4 +1,4 @@
-package com.laacompany.bluejackkost;
+package com.laacompany.bluejackkost.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.laacompany.bluejackkost.DetailActivity;
+import com.laacompany.bluejackkost.ObjectClass.BHouse;
+import com.laacompany.bluejackkost.R;
+
 import java.util.ArrayList;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdapter.BHouseHolder> {
 
@@ -60,7 +67,11 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
         public void bind(BHouse bHouse, int position){
             this.position = position;
 
-            mIVPreview.setImageDrawable(Handler.LoadImageFromWebOperations(bHouse.getImageURL()));
+            Glide.with(mContext)
+                    .load(bHouse.getImageURL())
+                    .centerCrop()
+                    .into(mIVPreview);
+
             mTVName.setText(bHouse.getName());
             mTVFacility.setText(bHouse.getFacility());
             mTVPrice.setText(String.valueOf(bHouse.getPrice()));
@@ -71,7 +82,8 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
 
         @Override
         public void onClick(View v) {
-            Intent intent = DetailActivity.newIntent(mContext, position);
+            Intent intent = DetailActivity.newIntent(mContext.getApplicationContext(), position);
+            intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         }
 

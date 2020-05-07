@@ -10,12 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.laacompany.bluejackkost.Handle.Handler;
+import com.laacompany.bluejackkost.ObjectClass.BHouse;
+
 public class DetailActivity extends AppCompatActivity {
 
     private static final String EXTRA_POS = "position";
 
     private ImageView mIVPreview;
-    private TextView mTVName,mTVFacility,mTVPrice,mTVDescription,mTVLatitude,mTVLongitude;
+    private TextView mTVName,mTVFacility,mTVPrice, mTVAddress,mTVLatitude,mTVLongitude;
 
     public static Intent newIntent(Context packageContext, int position){
         Intent intent = new Intent(packageContext, DetailActivity.class);
@@ -28,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         mTVName = findViewById(R.id.id_detail_tv_name);
         mTVFacility = findViewById(R.id.id_detail_tv_facility);
         mTVPrice = findViewById(R.id.id_detail_tv_price);
-        mTVDescription = findViewById(R.id.id_detail_tv_description);
+        mTVAddress = findViewById(R.id.id_detail_tv_address);
         mTVLatitude = findViewById(R.id.id_detail_tv_latitude);
         mTVLongitude = findViewById(R.id.id_detail_tv_longitude);
     }
@@ -43,11 +47,14 @@ public class DetailActivity extends AppCompatActivity {
         int pos = getIntent().getIntExtra(EXTRA_POS,0);
         BHouse bHouse = Handler.sBHouses.get(pos);
 
-        mIVPreview.setImageDrawable(Handler.LoadImageFromWebOperations(bHouse.getImageURL()));
+        Glide.with(this)
+                .load(bHouse.getImageURL())
+                .centerCrop()
+                .into(mIVPreview);
         mTVName.setText(bHouse.getName());
         mTVFacility.setText(bHouse.getFacility());
         mTVPrice.setText(String.valueOf(bHouse.getPrice()));
-        mTVDescription.setText(bHouse.getDescription());
+        mTVAddress.setText(bHouse.getAddress());
         mTVLatitude.setText(String.valueOf(bHouse.getLatitude()));
         mTVLongitude.setText(String.valueOf(bHouse.getLongitude()));
     }

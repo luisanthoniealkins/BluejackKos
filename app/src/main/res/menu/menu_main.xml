@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="id_menu_boarding_list"
+        android:id="@+id/id_menu_boarding_list"
         android:icon="@drawable/ic_action_booking_list"
         android:title="Show Boarding List"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="id_menu_logout"
+        android:id="@+id/id_menu_logout"
         android:icon="@drawable/ic_action_logout"
         android:title="Logout"
         app:showAsAction="ifRoom"/>
