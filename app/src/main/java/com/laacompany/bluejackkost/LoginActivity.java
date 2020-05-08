@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.laacompany.bluejackkost.Database.DBSchema;
 import com.laacompany.bluejackkost.Database.DatabaseHelper;
 import com.laacompany.bluejackkost.Handle.Handler;
@@ -23,6 +24,7 @@ import com.laacompany.bluejackkost.ObjectClass.User;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private TextInputLayout mTILUsername, mTILPassword;
     private EditText mETUsername,mETPassword;
     SQLiteDatabase database;
 
@@ -34,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     private void init(){
         mETUsername = findViewById(R.id.id_login_edt_username);
         mETPassword = findViewById(R.id.id_login_edt_password);
+        mTILUsername = findViewById(R.id.id_login_til_username);
+        mTILPassword = findViewById(R.id.id_login_til_password);
     }
 
     @Override
@@ -44,57 +48,59 @@ public class LoginActivity extends AppCompatActivity {
         database = databaseHelper.getWritableDatabase();
 
         init();
-
     }
 
 
 
     public void clickLogin(View view) {
 
-            String login_username = mETUsername.getText().toString();
-            String login_password = mETPassword.getText().toString();
+            User userLogin = validation();
 
-            if(login_username.isEmpty() && (login_password.isEmpty() ) ) {
-                Toast.makeText(LoginActivity.this,"Username & Password is empty",Toast.LENGTH_SHORT).show();
-            }else if(login_username.isEmpty() && !(login_password.isEmpty()) ){
-                Toast.makeText(LoginActivity.this,"Username is empty",Toast.LENGTH_SHORT).show();
-            }else if(!(login_username.isEmpty()) && login_password.isEmpty()  ){
-                Toast.makeText(LoginActivity.this,"Password is empty",Toast.LENGTH_SHORT).show();
-            }else{
-                databasevalidation();
+            if (userLogin != null){
+                SharedPreferences pref = getSharedPreferences(Handler.SP_USER, MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString(Handler.SP_KEY_ID,userLogin.getId());
+
+                editor.apply();
+                Handler.sCurrentUser = userLogin.getId();
+                Toast.makeText(this, "Welcome " + userLogin.getId(),Toast.LENGTH_SHORT).show();
+                finish();
             }
 
         }
 
-    private void databasevalidation() {
+    private User validation() {
 
         String login_username = mETUsername.getText().toString();
         String login_password = mETPassword.getText().toString();
 
-        User userLogin = null;
+        boolean valid = true;
+
+        if (login_username.isEmpty()) {
+            mTILUsername.setError("Username must be filled");
+            valid = false;
+        } else {
+            mTILUsername.setError(null);
+        }
+
+        if (login_password.isEmpty()) {
+            mTILPassword.setError("Password must be filled");
+            valid = false;
+        } else {
+            mTILPassword.setError(null);
+        }
+
+        if (!valid) return null;
 
         for(User user : Handler.sUsers){
             if (user.getUsername().equals(login_username) && user.getPassword().equals(login_password)) {
-                userLogin = user;
-                break;
+                return user;
             }
         }
 
-        if(userLogin != null){
-            SharedPreferences pref = getSharedPreferences(Handler.SP_USER, MODE_PRIVATE);
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putString(Handler.SP_KEY_ID,userLogin.getId());
-
-            editor.apply();
-            Handler.sCurrentUser = userLogin.getId();
-//            Log.d("halo", userLogin.getId());
-            Toast.makeText(this, "Welcome " + userLogin.getId(),Toast.LENGTH_SHORT).show();
-            finish();
-        }else {
-            Toast.makeText(LoginActivity.this,"Data is not registered",Toast.LENGTH_SHORT).show();
-        }
-
-
+        mTILUsername.setError("Username and Password not matched");
+        mTILPassword.setError("Username and Password not matched");
+        return null;
     }
 
 
