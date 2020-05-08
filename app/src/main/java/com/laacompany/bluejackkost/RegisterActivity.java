@@ -1,9 +1,14 @@
 package com.laacompany.bluejackkost;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.telephony.SmsManager;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,22 +17,23 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.laacompany.bluejackkost.Handle.Handler;
 import com.laacompany.bluejackkost.ObjectClass.User;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText mETUsername,mETPhone, mETPassword,mETCPassword;
+    private EditText mETUsername, mETPhone, mETPassword, mETCPassword;
     private RadioButton mRBMale;
     private CheckBox mCBTerms;
 
-    public static Intent newIntent(Context packageContext){
+    public static Intent newIntent(Context packageContext) {
         Intent intent = new Intent(packageContext, RegisterActivity.class);
         return intent;
     }
 
-    private void init(){
+    private void init() {
         mETUsername = findViewById(R.id.id_register_edt_username);
         mETPhone = findViewById(R.id.id_register_edt_phone);
         mETPassword = findViewById(R.id.id_register_edt_password);
@@ -56,12 +62,22 @@ public class RegisterActivity extends AppCompatActivity {
         String dob = "20/03/2000";
         boolean isMale = mRBMale.isChecked(), isTermCross = mCBTerms.isChecked();
 
-        //VALIDATION GOES HERE (RETURN; IF ERROR FOUND)
+
+        /*
+        VALIDATION GOES HERE (RETURN; IF ERROR FOUND)
 
 
-        String id = "bebas";
 
-        Handler.insertUser(new User(id,username,password,phone,dob,(isMale)? "Male" : "Female"));
+         */
+
+        String user_id = Handler.getUserID();
+        Handler.sUsers.add(new User(user_id, username, password, phone, dob, (isMale) ? "Male" : "Female"));
+        Handler.insertUser(new User(user_id, username, password, phone, dob, (isMale) ? "Male" : "Female"));
+
+        String sms_message = "Registration Successful!";
+        SmsManager.getDefault().sendTextMessage(phone,null, sms_message, null, null);
+//        SmsManager.getSmsManagerForSubscriptionId( SubscriptionManager.from(this).getActiveSubscriptionInfoList().get(1).getSubscriptionId()).sendTextMessage(phone, "123", sms_message, null, null);
+        finish();
     }
 
 }

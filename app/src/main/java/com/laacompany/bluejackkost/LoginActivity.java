@@ -2,11 +2,13 @@ package com.laacompany.bluejackkost;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.laacompany.bluejackkost.Database.DBSchema;
 import com.laacompany.bluejackkost.Database.DatabaseHelper;
+import com.laacompany.bluejackkost.Handle.Handler;
+import com.laacompany.bluejackkost.ObjectClass.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,8 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public static Intent newIntent(Context packageContext){
-        Intent intent = new Intent(packageContext, LoginActivity.class);
-        return intent;
+        return new Intent(packageContext, LoginActivity.class);
     }
 
     private void init(){
@@ -68,50 +71,34 @@ public class LoginActivity extends AppCompatActivity {
         String login_username = mETUsername.getText().toString();
         String login_password = mETPassword.getText().toString();
 
-        long count = GetUserCount();
-        int id = 0;
-        boolean benar = false;
+        User userLogin = null;
 
-        while ( id <= count){
-            Cursor cursor = getcursor(id);
-            cursor.moveToNext();
-
-            String database_username = cursor.getString(cursor.getColumnIndex( DBSchema.UserTable.Cols.USERNAME));
-            String database_password = cursor.getString(cursor.getColumnIndex(DBSchema.UserTable.Cols.PASSWORD));
-
-            if(login_username.equals(database_username)  && login_password.equals(database_password) ){
-                benar = true;
+        for(User user : Handler.sUsers){
+            if (user.getUsername().equals(login_username) && user.getPassword().equals(login_password)) {
+                userLogin = user;
                 break;
-            }else{
-                benar = false;
             }
         }
 
-        if(benar){
-            Toast.makeText(LoginActivity.this,"Data is not registered",Toast.LENGTH_SHORT).show();
-        }else if(!benar){
+        if(userLogin != null){
+            SharedPreferences pref = getSharedPreferences(Handler.SP_USER, MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString(Handler.SP_KEY_ID,userLogin.getId());
+
+            editor.apply();
+            Handler.sCurrentUser = userLogin.getId();
+//            Log.d("halo", userLogin.getId());
+            Toast.makeText(this, "Welcome " + userLogin.getId(),Toast.LENGTH_SHORT).show();
             finish();
+        }else {
+            Toast.makeText(LoginActivity.this,"Data is not registered",Toast.LENGTH_SHORT).show();
         }
 
 
-    }
-
-    private Cursor getcursor(int id) {
-        String query_select = "SELECT * FROM " + DBSchema.UserTable.NAME + " WHERE " + DBSchema.UserTable.Cols.USER_ID + " = " + id;
-        return database.rawQuery(query_select,null);
-    }
-
-    private int GetUserCount(){
-        String countquery = "SELECT * FROM " + DBSchema.UserTable.NAME;
-        Cursor cursor = database.rawQuery(countquery,null);
-        cursor.close();
-
-        return cursor.getCount();
     }
 
 
     public void clickRegister(View view) {
-        Intent intent = RegisterActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(RegisterActivity.newIntent(this));
     }
 }

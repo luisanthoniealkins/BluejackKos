@@ -75,10 +75,7 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
             mTVName.setText(bHouse.getName());
             mTVFacility.setText(bHouse.getFacility());
             mTVPrice.setText(String.valueOf(bHouse.getPrice()));
-
         }
-
-
 
         @Override
         public void onClick(View v) {

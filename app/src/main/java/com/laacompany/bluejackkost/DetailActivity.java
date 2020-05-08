@@ -1,9 +1,12 @@
 package com.laacompany.bluejackkost;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.laacompany.bluejackkost.Handle.Handler;
 import com.laacompany.bluejackkost.ObjectClass.BHouse;
+import com.laacompany.bluejackkost.ObjectClass.Booking;
+
+import java.util.Calendar;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -20,6 +26,9 @@ public class DetailActivity extends AppCompatActivity {
 
     private ImageView mIVPreview;
     private TextView mTVName,mTVFacility,mTVPrice, mTVAddress,mTVLatitude,mTVLongitude;
+    private Button mBTNBooking;
+    private int pos;
+    private BHouse bHouse;
 
     public static Intent newIntent(Context packageContext, int position){
         Intent intent = new Intent(packageContext, DetailActivity.class);
@@ -35,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
         mTVAddress = findViewById(R.id.id_detail_tv_address);
         mTVLatitude = findViewById(R.id.id_detail_tv_latitude);
         mTVLongitude = findViewById(R.id.id_detail_tv_longitude);
+        mBTNBooking = findViewById(R.id.id_detail_btn_booking);
     }
 
     @Override
@@ -44,8 +54,8 @@ public class DetailActivity extends AppCompatActivity {
 
         init();
 
-        int pos = getIntent().getIntExtra(EXTRA_POS,0);
-        BHouse bHouse = Handler.sBHouses.get(pos);
+        pos = getIntent().getIntExtra(EXTRA_POS,0);
+        bHouse = Handler.sBHouses.get(pos);
 
         Glide.with(this)
                 .load(bHouse.getImageURL())
@@ -57,13 +67,48 @@ public class DetailActivity extends AppCompatActivity {
         mTVAddress.setText(bHouse.getAddress());
         mTVLatitude.setText(String.valueOf(bHouse.getLatitude()));
         mTVLongitude.setText(String.valueOf(bHouse.getLongitude()));
+
+        for(Booking booking : Handler.sCurrentBookings){
+            if (booking.getbHouseId().equals(String.valueOf(pos+1))) mBTNBooking.setEnabled(false);
+        }
+
     }
 
     public void clickMaps(View view) {
-
+        startActivity(MapsActivity.newIntent(this, bHouse.getLatitude(), bHouse.getLongitude(), bHouse.getName()));
     }
 
     public void clickBooking(View view) {
+        Calendar today = Calendar.getInstance();
+        int DD = today.get(Calendar.DAY_OF_MONTH);
+        int MM = today.get(Calendar.MONTH);
+        int YYYY = today.get(Calendar.YEAR);
+        new DatePickerDialog(
+            DetailActivity.this,
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int YYYY, int MM, int DD) {
+//                    calendar.set(YYYY, MM, DD);
+//                    bookDate = "";
+//                    if (DD < 10) bookDate += "0";
+//                    bookDate += "" + DD + "/";
+//                    ++MM;
+//                    if (MM < 10) bookDate += "0";
+//                    bookDate += "" + MM + "/" + YYYY;
+                    String tempDate = DD + "/" + MM  + "/" + YYYY;
+                    book(tempDate);
+                }
+            }, YYYY, MM, DD)
+            .show();
 
     }
+
+    public void book(String date){
+        String book_id = Handler.getBookingID(this);
+        Handler.insertBooking(new Booking(book_id, Handler.sCurrentUser, String.valueOf(pos+1), date));
+        Handler.sCurrentBookings.add(new Booking(book_id, Handler.sCurrentUser, String.valueOf(pos+1), date));
+        finish();
+    }
+
+
 }

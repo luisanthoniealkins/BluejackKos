@@ -3,14 +3,23 @@ package com.laacompany.bluejackkost;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.laacompany.bluejackkost.Adapter.BookingAdapter;
+import com.laacompany.bluejackkost.Handle.Handler;
 
 public class BookingActivity extends AppCompatActivity {
 
-    private  RecyclerView mRVBookingList;
+    private static TextView mTVNoBookings;
+    private RecyclerView mRVBookingList;
+    private BookingAdapter bookingAdapter;
 
     public static Intent newIntent(Context packageContext){
         Intent intent = new Intent(packageContext, BookingActivity.class);
@@ -18,7 +27,13 @@ public class BookingActivity extends AppCompatActivity {
     }
 
     private void init(){
+        mTVNoBookings = findViewById(R.id.id_booking_tv_no_booking);
         mRVBookingList = findViewById(R.id.id_booking_rv_booking);
+
+        mRVBookingList.setLayoutManager(new LinearLayoutManager(this));
+        bookingAdapter = new BookingAdapter(this, Handler.sCurrentBookings);
+        mRVBookingList.setAdapter(bookingAdapter);
+
     }
 
     @Override
@@ -27,5 +42,15 @@ public class BookingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_booking);
 
         init();
+        refreshLayout();
     }
+
+    public static void refreshLayout(){
+        if (Handler.sCurrentBookings.size() == 0){
+            mTVNoBookings.setVisibility(View.VISIBLE);
+        } else {
+            mTVNoBookings.setVisibility(View.GONE);
+        }
+    }
+
 }

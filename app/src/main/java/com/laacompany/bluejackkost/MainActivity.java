@@ -2,13 +2,19 @@ package com.laacompany.bluejackkost;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.laacompany.bluejackkost.Adapter.BoardingHouseAdapter;
 import com.laacompany.bluejackkost.Handle.Handler;
@@ -28,10 +34,11 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView mTVLoading;
     private RecyclerView mRVBoardingHouse;
 
-    private static final String json_link =  "https://bit.ly/2zd4uhX";
-
+    private static final String JSON_LINK =  "https://bit.ly/2zd4uhX";
+    private boolean canShowBooking = false;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,14 +48,30 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.id_menu_boarding_list:
+                if (canShowBooking) startActivity(BookingActivity.newIntent(this));
+                else Toast.makeText(this, "Please Wait..", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.id_menu_logout:
+                SharedPreferences.Editor editor = getSharedPreferences(Handler.SP_USER,MODE_PRIVATE).edit();
+                editor.remove(Handler.SP_KEY_ID);
+                editor.apply();
+                Handler.sCurrentUser = "%empty.value%";
+                startActivity(LoginActivity.newIntent(this));
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     private void init(){
+        mTVLoading = findViewById(R.id.id_main_tv_loading);
         mRVBoardingHouse = findViewById(R.id.id_main_rv_boarding_house);
 
         mRVBoardingHouse.setLayoutManager(new LinearLayoutManager(this));
-        Handler.init();
+        Handler.init(this);
     }
 
     @Override
@@ -57,7 +80,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+        requestAppPermissions();
 
+
+        String sp_value = getSharedPreferences(Handler.SP_USER, MODE_PRIVATE).getString(Handler.SP_KEY_ID, "empty");
+        if (sp_value.equals("empty")){
+            startActivity(LoginActivity.newIntent(this));
+        } else {
+            Handler.sCurrentUser = sp_value;
+            Handler.init_bookings();
+        }
 
 
         try {
@@ -68,13 +100,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (Handler.sCurrentUser.equals("%empty.value%")) {
+            finish();
+        } else {
+            Handler.init_bookings();
+        }
+    }
+
+    private void hideLoading(){
+        mTVLoading.setVisibility(View.GONE);
+        canShowBooking = true;
+    }
 
 
     void run() throws IOException {
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(json_link)
+                .url(JSON_LINK)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -101,13 +147,12 @@ public class MainActivity extends AppCompatActivity {
                                 String image = jsonObject.getString("image");
                                 double latitude = jsonObject.getDouble("LAT");
                                 double longitude = jsonObject.getDouble("LNG");
-                                Log.d("halo", image);
-                                Handler.sBHouses.add(new BHouse(id,image,name,facilities,price,address,longitude,latitude));
+                                Handler.sBHouses.add(new BHouse(id,image,name,facilities,price,address,latitude,longitude));
                             }
 
                             BoardingHouseAdapter BHouseAdapter = new BoardingHouseAdapter(getApplicationContext(), Handler.sBHouses);
                             mRVBoardingHouse.setAdapter(BHouseAdapter);
-
+                            hideLoading();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -117,5 +162,19 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void requestAppPermissions(){
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_PHONE_STATE}, 0);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
     }
 }

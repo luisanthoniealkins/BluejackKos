@@ -20,12 +20,44 @@ public class Handler {
 
     private static DatabaseHelper sDatabaseHelper;
     public static ArrayList<BHouse> sBHouses;
+    public static ArrayList<User> sUsers;
+    public static ArrayList<Booking> sCurrentBookings;
+    public static String sCurrentUser;
 
+    public static final String SP_USER = "sharedpreferences_user";
+    public static final String SP_KEY_ID = "key_userid";
+    public static final String SP_KEY_BOOKING = "key_bookingnumber";
 
     public static void init(Context context){
         sDatabaseHelper = new DatabaseHelper(context);
         sBHouses = new ArrayList<BHouse>();
+        sUsers = getAllUser();
     }
+
+    public static void init_bookings(){
+        sCurrentBookings = getCurrentUserBookings();
+    }
+
+
+    public static String getUserID(){
+        String user_id = "US";
+        int idx = sUsers.size();
+        if (idx < 10) user_id += "00"+idx;
+        else if (idx < 100) user_id += "0"+idx;
+        else user_id += idx;
+        return user_id;
+    }
+
+    public static String getBookingID(Context context){
+        String booking_id = "BK";
+        int idx = context.getSharedPreferences(SP_USER,Context.MODE_PRIVATE).getInt(SP_KEY_BOOKING,0);
+        context.getSharedPreferences(SP_USER,Context.MODE_PRIVATE).edit().putInt(SP_KEY_BOOKING,idx+1).apply();
+        if (idx < 10) booking_id += "00"+idx;
+        else if (idx < 100) booking_id += "0"+idx;
+        else booking_id += idx;
+        return booking_id;
+    }
+
 
     public static void insertUser(User user){
         SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();
@@ -42,7 +74,7 @@ public class Handler {
         return values;
     }
 
-    public static ArrayList<User> selectAllUser(){
+    public static ArrayList<User> getAllUser(){
         ArrayList<User> users = new ArrayList<User>();
 
         SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();
@@ -56,7 +88,7 @@ public class Handler {
             String gender = cursor.getString(cursor.getColumnIndex(UserTable.Cols.GENDER));
             users.add(new User(userid,username,password,phone,dob,gender));
         }
-
+        cursor.close();
         return users;
     }
 
@@ -82,5 +114,33 @@ public class Handler {
         db.delete(BookingTable.NAME, BookingTable.Cols.BOOKING_ID + "= ?", new String[]{bookingId});
         db.close();
     }
+
+    public static ArrayList<Booking> getAllBooking(){
+        ArrayList<Booking> bookings = new ArrayList<>();
+
+        SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();
+        Cursor cursor = db.query(BookingTable.NAME,null, null, null, null, null, null);
+        while(cursor.moveToNext()){
+            String bookId = cursor.getString(cursor.getColumnIndex(BookingTable.Cols.BOOKING_ID));
+            String userId = cursor.getString(cursor.getColumnIndex(BookingTable.Cols.USER_ID));
+            String bHouseId = cursor.getString(cursor.getColumnIndex(BookingTable.Cols.BHOUSE_ID));
+            String bookDate = cursor.getString(cursor.getColumnIndex(BookingTable.Cols.BOOKING_DATE));
+            bookings.add(new Booking(bookId,userId,bHouseId,bookDate));
+        }
+        cursor.close();
+        return bookings;
+    }
+
+    private static ArrayList<Booking> getCurrentUserBookings(){
+        ArrayList<Booking> allBookings = getAllBooking(), currentBookings = new ArrayList<>();
+        for(Booking booking : allBookings){
+            if (booking.getUserId().equals(sCurrentUser)){
+                currentBookings.add(booking);
+            }
+        }
+        return currentBookings;
+    }
+
+
 
 }

@@ -2,13 +2,13 @@ package com.laacompany.bluejackkost.ObjectClass;
 
 public class Booking {
 
-    private String bookingId, userId, bHouseId, bookingdate;
+    private String bookingId, userId, bHouseId, bookingDate;
 
-    public Booking(String bookingId, String userId, String bHouseId, String bookingdate) {
+    public Booking(String bookingId, String userId, String bHouseId, String bookingDate) {
         this.bookingId = bookingId;
         this.userId = userId;
         this.bHouseId = bHouseId;
-        this.bookingdate = bookingdate;
+        this.bookingDate = bookingDate;
     }
 
     public String getBookingId() {
@@ -35,11 +35,11 @@ public class Booking {
         this.bHouseId = bHouseId;
     }
 
-    public String getBookingdate() {
-        return bookingdate;
+    public String getBookingDate() {
+        return bookingDate;
     }
 
-    public void setBookingdate(String bookingdate) {
-        this.bookingdate = bookingdate;
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 }
