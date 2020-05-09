@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,11 +56,27 @@ public class MainActivity extends AppCompatActivity {
                 else Toast.makeText(this, "Please Wait..", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.id_menu_logout:
-                SharedPreferences.Editor editor = getSharedPreferences(Handler.SP_USER,MODE_PRIVATE).edit();
-                editor.remove(Handler.SP_KEY_ID);
-                editor.apply();
-                Handler.sCurrentUser = "%empty.value%";
-                startActivity(LoginActivity.newIntent(this));
+
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setTitle("Log out");
+                alertDialog.setMessage("Are you sure you want to logout?");
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Logout",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferences.Editor editor = getSharedPreferences(Handler.SP_USER,MODE_PRIVATE).edit();
+                                editor.remove(Handler.SP_KEY_ID);
+                                editor.apply();
+                                Handler.sCurrentUser = "%empty.value%";
+                                startActivity(LoginActivity.newIntent(getApplicationContext()));
+                            }
+                        });
+                alertDialog.show();
                 break;
             default:
                 break;
@@ -80,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
-        requestAppPermissions();
+
 
 
         String sp_value = getSharedPreferences(Handler.SP_USER, MODE_PRIVATE).getString(Handler.SP_KEY_ID, "empty");
@@ -164,17 +182,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void requestAppPermissions(){
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.SEND_SMS,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.READ_PHONE_STATE}, 0);
-    }
-
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Exit Application");
+        alertDialog.setMessage("Are you sure you want to quit?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Quit",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+        alertDialog.show();
     }
 }

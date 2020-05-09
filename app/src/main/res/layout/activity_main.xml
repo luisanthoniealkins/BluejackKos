@@ -12,7 +12,7 @@
         android:id="@+id/id_main_tv_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Retriving Data, Please Wait"/>
+        android:text="Retrieving Data, Please Wait"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/id_main_rv_boarding_house"

@@ -1,6 +1,9 @@
 package com.laacompany.bluejackkost;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.laacompany.bluejackkost.Database.DBSchema;
@@ -48,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         database = databaseHelper.getWritableDatabase();
 
         init();
+        requestAppPermissions();
     }
 
 
@@ -63,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 editor.apply();
                 Handler.sCurrentUser = userLogin.getId();
-                Toast.makeText(this, "Welcome " + userLogin.getId(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Welcome " + userLogin.getUsername(),Toast.LENGTH_SHORT).show();
                 finish();
             }
 
@@ -106,5 +111,32 @@ public class LoginActivity extends AppCompatActivity {
 
     public void clickRegister(View view) {
         startActivity(RegisterActivity.newIntent(this));
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Exit Application");
+        alertDialog.setMessage("Are you sure you want to quit?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Quit",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+        alertDialog.show();
+    }
+
+    private void requestAppPermissions(){
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_PHONE_STATE}, 0);
     }
 }
