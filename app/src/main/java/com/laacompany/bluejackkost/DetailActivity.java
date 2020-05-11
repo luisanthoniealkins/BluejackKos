@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -80,11 +81,11 @@ public class DetailActivity extends AppCompatActivity {
 
     public void clickBooking(View view) {
         Calendar today = Calendar.getInstance();
+
         int DD = today.get(Calendar.DAY_OF_MONTH);
         int MM = today.get(Calendar.MONTH);
         int YYYY = today.get(Calendar.YEAR);
-        new DatePickerDialog(
-            DetailActivity.this,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(DetailActivity.this,
             new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int YYYY, int MM, int DD) {
@@ -98,8 +99,9 @@ public class DetailActivity extends AppCompatActivity {
                     String tempDate = DD + "/" + MM  + "/" + YYYY;
                     book(tempDate);
                 }
-            }, YYYY, MM, DD)
-            .show();
+            }, YYYY, MM, DD);
+        datePickerDialog.getDatePicker().setMinDate(today.getTimeInMillis());
+        datePickerDialog.show();
 
     }
 
@@ -107,6 +109,7 @@ public class DetailActivity extends AppCompatActivity {
         String book_id = Handler.getBookingID(this);
         Handler.insertBooking(new Booking(book_id, Handler.sCurrentUser, String.valueOf(pos+1), date));
         Handler.sCurrentBookings.add(new Booking(book_id, Handler.sCurrentUser, String.valueOf(pos+1), date));
+        Toast.makeText(this, "Booking Successful!", Toast.LENGTH_SHORT).show();
         finish();
     }
 

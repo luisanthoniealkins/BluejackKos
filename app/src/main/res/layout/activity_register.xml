@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirmation Password"
-            android:inputType="numberPassword"/>
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
@@ -87,6 +87,7 @@
             android:text="Female"/>
     </RadioGroup>
 
+
     <Button
         android:id="@+id/id_register_btn_date"
         android:layout_width="match_parent"
@@ -94,11 +95,25 @@
         android:text="DOB"
         android:onClick="clickDOB"/>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/id_register_til_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"/>
+
+
+
     <CheckBox
         android:id="@+id/id_register_cb_terms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Terms and Condition"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/id_register_til_terms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"/>
 
     <Button
         android:id="@+id/id_register_btn_register"

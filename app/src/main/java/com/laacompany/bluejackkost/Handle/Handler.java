@@ -32,6 +32,7 @@ public class Handler {
         sDatabaseHelper = new DatabaseHelper(context);
         sBHouses = new ArrayList<BHouse>();
         sUsers = getAllUser();
+        sCurrentUser = "%empty.value%";
     }
 
     public static void init_bookings(){
