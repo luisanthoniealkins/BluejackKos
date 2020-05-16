@@ -166,6 +166,7 @@
         android:textSize="16sp"
         android:backgroundTint="@color/colorLightBlue"
         android:textColor="@android:color/white"
+        android:onClick="clickBooking"
         android:layout_margin="@dimen/padding_vertical"/>
 
 </RelativeLayout>
