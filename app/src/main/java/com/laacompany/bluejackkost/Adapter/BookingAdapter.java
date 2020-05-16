@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,11 +85,16 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingH
                     .load(bHouse.getImageURL())
                     .centerCrop()
                     .into(mIVPreview);
-            mTVBookId.setText(booking.getBookingId());
+
+            String price = "Rp. " + bHouse.getPrice() + ",00";
+            String facilities = "Facilities :\n" + Handler.getSplit(bHouse.getFacility());
+            String bookno = "Booking no : " + booking.getBookingId();
+            String bookdate = booking.getBookingDate();
+            mTVBookId.setText(bookno);
             mTVName.setText(bHouse.getName());
-            mTVFacility.setText(bHouse.getFacility());
-            mTVPrice.setText(String.valueOf(bHouse.getPrice()));
-            mTVDate.setText(booking.getBookingDate());
+            mTVFacility.setText(facilities);
+            mTVPrice.setText(price);
+            mTVDate.setText(bookdate);
 
             mBTDelete.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -105,7 +105,7 @@ public class Handler {
         values.put(BookingTable.Cols.BOOKING_ID, booking.getBookingId());
         values.put(BookingTable.Cols.USER_ID, booking.getUserId());
         values.put(BookingTable.Cols.BHOUSE_ID, booking.getbHouseId());
-        values.put(BookingTable.Cols.BOOKING_DATE, booking.getbHouseId());
+        values.put(BookingTable.Cols.BOOKING_DATE, booking.getBookingDate());
 
         return values;
     }
@@ -116,11 +116,11 @@ public class Handler {
         db.close();
     }
 
-    public static ArrayList<Booking> getAllBooking(){
+    public static ArrayList<Booking> getCurrentUserBookings(){
         ArrayList<Booking> bookings = new ArrayList<>();
 
         SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();
-        Cursor cursor = db.query(BookingTable.NAME,null, null, null, null, null, null);
+        Cursor cursor = db.query(BookingTable.NAME,null, BookingTable.Cols.USER_ID + " = ?", new String[]{sCurrentUser}, null, null, null);
         while(cursor.moveToNext()){
             String bookId = cursor.getString(cursor.getColumnIndex(BookingTable.Cols.BOOKING_ID));
             String userId = cursor.getString(cursor.getColumnIndex(BookingTable.Cols.USER_ID));
@@ -132,16 +132,15 @@ public class Handler {
         return bookings;
     }
 
-    private static ArrayList<Booking> getCurrentUserBookings(){
-        ArrayList<Booking> allBookings = getAllBooking(), currentBookings = new ArrayList<>();
-        for(Booking booking : allBookings){
-            if (booking.getUserId().equals(sCurrentUser)){
-                currentBookings.add(booking);
-            }
+    public static String getSplit(String text){
+        String[] texts = text.split(",");
+        String res = "";
+        for (String fac: texts ) {
+            fac = fac.trim();
+            res = res.concat("- " + fac+'\n');
         }
-        return currentBookings;
+        res = res.trim();
+        return res;
     }
-
-
 
 }

@@ -61,7 +61,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng bHouse = new LatLng(latitude,longitude);
         mMap.addMarker(new MarkerOptions().position(bHouse).title(name));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(bHouse));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11), 2000, null);
+        mMap.setMinZoomPreference(13);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 
     }
 }
