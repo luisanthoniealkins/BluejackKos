@@ -19,7 +19,10 @@ import com.laacompany.bluejackkost.Handle.Handler;
 import com.laacompany.bluejackkost.ObjectClass.BHouse;
 import com.laacompany.bluejackkost.ObjectClass.Booking;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -62,9 +65,13 @@ public class DetailActivity extends AppCompatActivity {
                 .load(bHouse.getImageURL())
                 .centerCrop()
                 .into(mIVPreview);
+
+        String facilities = Handler.getSplit(bHouse.getFacility());
+        String price = "Rp. " + bHouse.getPrice() + ",00";
+
         mTVName.setText(bHouse.getName());
-        mTVFacility.setText(bHouse.getFacility());
-        mTVPrice.setText(String.valueOf(bHouse.getPrice()));
+        mTVFacility.setText(facilities);
+        mTVPrice.setText(price);
         mTVAddress.setText(bHouse.getAddress());
         mTVLatitude.setText(String.valueOf(bHouse.getLatitude()));
         mTVLongitude.setText(String.valueOf(bHouse.getLongitude()));
@@ -89,15 +96,11 @@ public class DetailActivity extends AppCompatActivity {
             new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int YYYY, int MM, int DD) {
-//                    calendar.set(YYYY, MM, DD);
-//                    bookDate = "";
-//                    if (DD < 10) bookDate += "0";
-//                    bookDate += "" + DD + "/";
-//                    ++MM;
-//                    if (MM < 10) bookDate += "0";
-//                    bookDate += "" + MM + "/" + YYYY;
-                    String tempDate = DD + "/" + MM  + "/" + YYYY;
-                    book(tempDate);
+                    SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd MMM YYYY");
+                    GregorianCalendar gc = new GregorianCalendar(YYYY,MM,DD);
+                    Date date = new Date(gc.getTimeInMillis());
+                    String string_date = sdf.format(date);
+                    book(string_date);
                 }
             }, YYYY, MM, DD);
         datePickerDialog.getDatePicker().setMinDate(today.getTimeInMillis());

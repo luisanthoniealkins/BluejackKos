@@ -1,10 +1,13 @@
 package com.laacompany.bluejackkost.ObjectClass;
 
+import android.util.Log;
+
 public class Booking {
 
     private String bookingId, userId, bHouseId, bookingDate;
 
     public Booking(String bookingId, String userId, String bHouseId, String bookingDate) {
+        Log.d("12345", "set" + bookingDate);
         this.bookingId = bookingId;
         this.userId = userId;
         this.bHouseId = bHouseId;
@@ -36,6 +39,7 @@ public class Booking {
     }
 
     public String getBookingDate() {
+        Log.d("12345", bookingDate);
         return bookingDate;
     }
 

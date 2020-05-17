@@ -1,66 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".DetailActivity">
 
     <ImageView
         android:id="@+id/id_detail_imv_preview"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:padding="2dp"
+        android:background="@color/colorPrimaryDark"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/id_detail_tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"/>
-
-    <TextView
-        android:id="@+id/id_detail_tv_facility"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Facility"/>
+        android:textSize="25sp"
+        android:layout_below="@id/id_detail_imv_preview"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:background="@color/colorLightBlue"
+        android:paddingTop="8dp"
+        android:elevation="8dp"/>
 
     <TextView
         android:id="@+id/id_detail_tv_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Price"/>
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:layout_below="@id/id_detail_tv_name"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorLightBlue"
+        android:paddingBottom="8dp"
+        android:elevation="8dp"/>
 
-    <TextView
-        android:id="@+id/id_detail_tv_address"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Description"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_detail_tv_price"
+        android:layout_above="@id/id_detail_btn_booking">
 
-    <TextView
-        android:id="@+id/id_detail_tv_latitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Latitude"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_horizontal">
 
-    <TextView
-        android:id="@+id/id_detail_tv_longitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Longitude"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Facilities"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/id_detail_btn_map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Show Maps"
-        android:onClick="clickMaps"/>
+            <TextView
+                android:id="@+id/id_detail_tv_facility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:maxLines="10"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"
+                />
+
+            <TextView
+                android:id="@+id/id_detail_tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Latitude : "
+                            android:textColor="@android:color/black"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:id="@+id/id_detail_tv_latitude"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Longitude : "
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black" />
+
+                        <TextView
+                            android:id="@+id/id_detail_tv_longitude"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/id_detail_btn_map"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_maps"
+                        android:backgroundTint="@color/colorLightBlue"
+                        android:onClick="clickMaps"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
 
     <Button
         android:id="@+id/id_detail_btn_booking"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:text="Booking"
-        android:onClick="clickBooking"/>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        android:backgroundTint="@color/colorLightBlue"
+        android:textColor="@android:color/white"
+        android:onClick="clickBooking"
+        android:layout_margin="@dimen/padding_vertical"/>
 
-</LinearLayout>
+</RelativeLayout>
+

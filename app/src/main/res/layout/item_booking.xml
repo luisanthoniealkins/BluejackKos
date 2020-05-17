@@ -1,44 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" 
+
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    card_view:cardBackgroundColor="#E6E6E6"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="8dp"
+    android:layout_margin="4dp">
 
-    <ImageView
-        android:id="@+id/id_item_book_imv_preview"
-        android:layout_width="80dp"
-        android:layout_height="80dp" />
-
-    <TextView
-        android:id="@+id/id_item_book_tv_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/id_item_book_tv_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/id_item_book_tv_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/id_item_book_tv_facility"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/id_item_book_tv_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/id_item_book_btn_delete"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete"/>
-    
-</LinearLayout>
+        android:orientation="vertical"
+        android:background="@color/colorLightestBlue">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@color/colorLightBlue"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/id_item_book_tv_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/id_item_book_tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:textSize="15sp"
+                android:layout_below="@id/id_item_book_tv_id"/>
+
+
+
+
+            <Button
+                android:id="@+id/id_item_book_btn_delete"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@color/colorCancel"
+                android:textColor="@android:color/white"
+                android:text="@string/booking_item_cancel"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/id_item_book_tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="19sp"/>
+
+            <TextView
+                android:id="@+id/id_item_book_tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:id="@+id/id_item_book_imv_preview"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                />
+
+            <TextView
+                android:id="@+id/id_item_book_tv_facility"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

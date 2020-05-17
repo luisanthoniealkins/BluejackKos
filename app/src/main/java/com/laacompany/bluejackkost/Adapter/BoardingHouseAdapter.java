@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.laacompany.bluejackkost.DetailActivity;
+import com.laacompany.bluejackkost.Handle.Handler;
 import com.laacompany.bluejackkost.ObjectClass.BHouse;
 import com.laacompany.bluejackkost.R;
 
@@ -69,12 +70,14 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
 
             Glide.with(mContext)
                     .load(bHouse.getImageURL())
-                    .centerCrop()
                     .into(mIVPreview);
 
+            String facilities = "Facilities :\n" + Handler.getSplit(bHouse.getFacility());
+            String price = "Rp. " + bHouse.getPrice() + ",00";
+
             mTVName.setText(bHouse.getName());
-            mTVFacility.setText(bHouse.getFacility());
-            mTVPrice.setText(String.valueOf(bHouse.getPrice()));
+            mTVFacility.setText(facilities);
+            mTVPrice.setText(price);
         }
 
         @Override

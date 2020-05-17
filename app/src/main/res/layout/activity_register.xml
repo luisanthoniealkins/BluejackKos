@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:layout_margin="16dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/id_register_til_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:counterEnabled="true"
         app:errorEnabled="true">
 
@@ -43,7 +43,7 @@
         android:id="@+id/id_register_til_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        app:passwordToggleEnabled="true"
         app:counterEnabled="true"
         app:errorEnabled="true">
 
@@ -59,7 +59,7 @@
         android:id="@+id/id_register_til_cpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        app:passwordToggleEnabled="true"
         app:counterEnabled="true"
         app:errorEnabled="true">
 
