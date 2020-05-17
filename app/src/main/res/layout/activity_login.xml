@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:padding="@dimen/padding_horizontal"
@@ -19,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:scaleType="fitCenter"
         android:layout_marginTop="40dp"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -37,7 +36,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_user"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/id_login_til_username"
@@ -53,7 +52,7 @@
                     android:layout_height="wrap_content"
 
                     android:backgroundTint="@android:color/black"
-                    android:inputType="text" />
+                    android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,13 +65,11 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-
-
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_pass"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/id_login_til_password"
@@ -87,9 +84,7 @@
                     android:id="@+id/id_login_edt_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:inputType="textPassword"
-
                     android:backgroundTint="@android:color/black"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -97,8 +92,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 
     <Button
         android:id="@+id/id_login_form_register"
@@ -112,7 +105,7 @@
         android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/padding_vertical" />
+        android:layout_marginBottom="@dimen/padding_vertical"/>
 
     <Button
         android:layout_width="250dp"
@@ -125,6 +118,6 @@
         android:text="Login"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-        tools:ignore="ButtonStyle" />
+        tools:ignore="ButtonStyle"/>
 
 </RelativeLayout>

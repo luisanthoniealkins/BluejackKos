@@ -79,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int YYYY, int MM, int DD) {
-                        String tempDate = DD + "/" + MM  + "/" + YYYY;
+                        String tempDate = DD + "/" + MM + "/" + YYYY;
                         mBTNDate.setText(tempDate);
                     }
                 }, YYYY, MM, DD);
@@ -96,24 +96,24 @@ public class RegisterActivity extends AppCompatActivity {
         boolean isMale = mRBMale.isChecked(), isTermCross = mCBTerms.isChecked(), valid = true;
 
         //USERNAME
-        boolean usernameHasAlphabet=false, usernameHasNumber=false;
-        for(int i=0;i<username.length();++i){
+        boolean usernameHasAlphabet = false, usernameHasNumber = false;
+        for (int i = 0; i < username.length(); ++i) {
             Character character = username.charAt(i);
-            if(usernameHasAlphabet && usernameHasNumber){
+            if (usernameHasAlphabet && usernameHasNumber) {
                 break;
-            }else if((character>='A' && character<='Z') || (character>='a' && character<='z')){
+            } else if ((character >= 'A' && character <= 'Z') || (character >= 'a' && character <= 'z')) {
                 usernameHasAlphabet = true;
-            }else if(Character.isDigit(character)){
+            } else if (Character.isDigit(character)) {
                 usernameHasNumber = true;
             }
         }
-        if (username.length()<3 || username.length()>25 || !usernameHasAlphabet || !usernameHasNumber) {
+        if (username.length() < 3 || username.length() > 25 || !usernameHasAlphabet || !usernameHasNumber) {
             mTILUsername.setError("Username must be 3 to 25 digits containing at least one letter and one digit");
             valid = false;
         }
 
-        if(valid) {
-            for(User user : Handler.sUsers){
+        if (valid) {
+            for (User user : Handler.sUsers) {
                 if (user.getUsername().equals(username)) {
                     mTILUsername.setError("Username has been taken");
                     valid = false;
@@ -124,28 +124,26 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (valid) mTILUsername.setError(null);
 
-
         //PASSWORD
-        boolean passwordHasUppercase=false, passwordHasLowercase=false , passwordHasNumber=false;
-        for(int i=0;i<password.length();++i){
+        boolean passwordHasUppercase = false, passwordHasLowercase = false, passwordHasNumber = false;
+        for (int i = 0; i < password.length(); ++i) {
             Character character = password.charAt(i);
-            if(passwordHasUppercase && passwordHasLowercase && passwordHasNumber){
+            if (passwordHasUppercase && passwordHasLowercase && passwordHasNumber) {
                 break;
-            }else if(character>='A' && character<='Z'){
+            } else if (character >= 'A' && character <= 'Z') {
                 passwordHasUppercase = true;
-            }else if(character>='a' && character<='z'){
+            } else if (character >= 'a' && character <= 'z') {
                 passwordHasLowercase = true;
-            }else if(Character.isDigit(character)){
+            } else if (Character.isDigit(character)) {
                 passwordHasNumber = true;
             }
         }
-        if (password.length()<7 || !passwordHasUppercase || !passwordHasLowercase || !passwordHasNumber) {
+        if (password.length() < 7 || !passwordHasUppercase || !passwordHasLowercase || !passwordHasNumber) {
             mTILPassword.setError("Password must be more than 6 digits containing at least one uppercase letter, one lowercase letter, and one digit");
             valid = false;
         } else {
             mTILPassword.setError(null);
         }
-
 
         //CPASSWORD
         if (!cpassword.equals(password)) {
@@ -155,42 +153,38 @@ public class RegisterActivity extends AppCompatActivity {
             mTILCPassword.setError(null);
         }
 
-
         //PHONE
-        boolean phoneIsNumeric=true;
-        for(int i=0;i<phone.length();++i){
+        boolean phoneIsNumeric = true;
+        for (int i = 0; i < phone.length(); ++i) {
             Character character = phone.charAt(i);
-            if(!Character.isDigit(character)){
-                phoneIsNumeric=false;
+            if (!Character.isDigit(character)) {
+                phoneIsNumeric = false;
                 break;
             }
         }
-        if (phone.length()<10 || phone.length()>12 || !phoneIsNumeric) {
+        if (phone.length() < 10 || phone.length() > 12 || !phoneIsNumeric) {
             mTILPhone.setError("Phone number must be 10 to 12 digits containing only numbers");
             valid = false;
         } else {
             mTILPhone.setError(null);
         }
 
-
         //DATE OF BIRTH
-        if (dob.equals("DOB")){
+        if (dob.equals("DOB")) {
             mTILDate.setError("Please choose date");
         } else {
             mTILDate.setError(null);
         }
 
-
         //TERMS AND CONDITIONS
-        if(!isTermCross){
+        if (!isTermCross) {
             mTILTerms.setError("You must agree with our terms of service to continue");
             valid = false;
         } else {
             mTILTerms.setError(null);
         }
 
-        if(!valid) return;
-
+        if (!valid) return;
 
         String user_id = Handler.getUserID();
         Handler.sUsers.add(new User(user_id, username, password, phone, dob, (isMale) ? "Male" : "Female"));
@@ -198,7 +192,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         String sms_message = "Registration Successful!";
         Toast.makeText(this, sms_message, Toast.LENGTH_SHORT).show();
-        SmsManager.getDefault().sendTextMessage(phone,null, sms_message, null, null);
+        SmsManager.getDefault().sendTextMessage(phone, null, sms_message, null, null);
 //        SmsManager.getSmsManagerForSubscriptionId( SubscriptionManager.from(this).getActiveSubscriptionInfoList().get(1).getSubscriptionId()).sendTextMessage(phone, "123", sms_message, null, null);
         finish();
     }

@@ -33,7 +33,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingH
     public BookingAdapter(Context context, ArrayList<Booking> bookings){
         mContext = context;
         mBookings = bookings;
-
     }
 
     @NonNull
@@ -56,7 +55,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingH
         mBookings = bookings;
     }
 
-
     public class BookingHolder extends RecyclerView.ViewHolder{
 
         private ImageView mIVPreview;
@@ -73,8 +71,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingH
             mTVPrice = itemView.findViewById(R.id.id_item_book_tv_price);
             mTVDate = itemView.findViewById(R.id.id_item_book_tv_date);
             mBTDelete = itemView.findViewById(R.id.id_item_book_btn_delete);
-
-
         }
 
         public void bind(final Booking booking){
@@ -122,8 +118,6 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingH
                 }
             });
         }
-
-
 
     }
 

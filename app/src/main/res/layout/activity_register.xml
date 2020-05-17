@@ -21,13 +21,13 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             android:inputType="text"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/id_register_til_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:counterEnabled="true"
         app:errorEnabled="true">
 
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:hint="Phone Number"
             android:inputType="number"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,24 +71,27 @@
             android:layout_height="wrap_content"
             android:hint="Confirmation Password"
             android:inputType="textPassword"/>
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <RadioButton
             android:id="@+id/id_register_rb_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Male"/>
+
         <RadioButton
             android:id="@+id/id_register_rb_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"/>
-    </RadioGroup>
 
+    </RadioGroup>
 
     <Button
         android:id="@+id/id_register_btn_date"
@@ -100,8 +105,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:errorEnabled="true"/>
-
-
 
     <CheckBox
         android:id="@+id/id_register_cb_terms"

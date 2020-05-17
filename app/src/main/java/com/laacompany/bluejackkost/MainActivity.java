@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         canShowBooking = true;
     }
 
-
     void run() throws IOException {
 
         OkHttpClient client = new OkHttpClient();
@@ -182,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     public void onBackPressed() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -202,4 +200,5 @@ public class MainActivity extends AppCompatActivity {
                 });
         alertDialog.show();
     }
+
 }

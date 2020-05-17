@@ -31,7 +31,6 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
         mBHouses = bHouses;
     }
 
-
     @NonNull
     @Override
     public BHouseHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -86,8 +85,6 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
             intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         }
-
-
 
     }
 
