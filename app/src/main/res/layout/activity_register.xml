@@ -184,6 +184,14 @@
                     android:text="Terms and Condition"
                     android:buttonTint="@color/colorPrimary"/>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_register_til_terms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    app:hintTextColor="@android:color/black"
+                    android:textAlignment="center"/>
+
             </LinearLayout>
 
     </ScrollView>
@@ -200,7 +208,6 @@
         android:background="@color/colorLightBlue"
         android:textColor="@android:color/white"
         android:layout_margin="@dimen/padding_horizontal"/>
-
 
 </RelativeLayout>
 
