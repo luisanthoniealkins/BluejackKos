@@ -174,7 +174,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         //DATE OF BIRTH
-        if (dob.equals("DOB")){
+        if (dob.equals("SELECT DATE")){
             mTILDate.setError("Please choose date");
         } else {
             mTILDate.setError(null);

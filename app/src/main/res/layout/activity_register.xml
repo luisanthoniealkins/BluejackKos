@@ -1,125 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:layout_margin="16dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".RegisterActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_register_til_username"
+    <TextView
+        android:id="@+id/id_register_form_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registration"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/padding_vertical"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:counterEnabled="true"
-        app:errorEnabled="true">
+        android:layout_below="@id/id_register_form_title"
+        android:layout_above="@id/id_register_btn_register">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/id_register_edt_username"
+        <LinearLayout
+            android:id="@+id/id_register_form_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:inputType="text"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:padding="@dimen/padding_horizontal">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_register_til_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_register_til_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:errorEnabled="true">
 
-        app:counterEnabled="true"
-        app:errorEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/id_register_edt_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    android:inputType="text"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/id_register_edt_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_register_til_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_register_til_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true">
+                app:counterEnabled="true"
+                app:errorEnabled="true">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/id_register_edt_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/id_register_edt_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    android:inputType="number"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_register_til_cpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        app:counterEnabled="true"
-        app:errorEnabled="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/id_register_edt_cpassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirmation Password"
-            android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/id_register_rb_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Male"/>
-        <RadioButton
-            android:id="@+id/id_register_rb_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female"/>
-    </RadioGroup>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Gender:"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical" />
 
 
-    <Button
-        android:id="@+id/id_register_btn_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DOB"
-        android:onClick="clickDOB"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/id_register_rb_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="25dp"
+                        android:text="Male"
+                        android:buttonTint="@color/colorPrimary"/>
+                    <RadioButton
+                        android:id="@+id/id_register_rb_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:layout_marginEnd="25dp"
+                        android:buttonTint="@color/colorPrimary"/>
+                </RadioGroup>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_register_til_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth:"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/id_register_btn_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:onClick="clickDOB"
+                        android:text="SELECT DATE"
+                        android:background="@color/colorLightBlue"
+                        android:textColor="@android:color/white"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/id_register_til_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:errorEnabled="true"
+                        app:hintTextColor="@android:color/black"
+                        android:textAlignment="center"/>
+                </LinearLayout>
 
 
 
-    <CheckBox
-        android:id="@+id/id_register_cb_terms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Terms and Condition"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_register_til_terms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:errorEnabled="true"/>
+
+
+
+
+            </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_register_til_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:counterEnabled="true"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/id_register_edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_register_til_cpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:counterEnabled="true"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/id_register_edt_cpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirmation Password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <CheckBox
+                android:id="@+id/id_register_cb_terms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_vertical"
+                android:text="Terms and Condition"
+                android:buttonTint="@color/colorPrimary"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_register_til_terms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
     <Button
         android:id="@+id/id_register_btn_register"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:text="Register"
-        android:onClick="clickRegister"/>
+        android:onClick="clickRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        android:background="@color/colorLightBlue"
+        android:textColor="@android:color/white"
+        android:layout_margin="@dimen/padding_horizontal"/>
 
-</LinearLayout>
+
+</RelativeLayout>
+

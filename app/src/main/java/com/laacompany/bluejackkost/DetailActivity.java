@@ -77,7 +77,11 @@ public class DetailActivity extends AppCompatActivity {
         mTVLongitude.setText(String.valueOf(bHouse.getLongitude()));
 
         for(Booking booking : Handler.sCurrentBookings){
-            if (booking.getbHouseId().equals(String.valueOf(pos+1))) mBTNBooking.setEnabled(false);
+            if (booking.getbHouseId().equals(String.valueOf(pos+1))) {
+                mBTNBooking.setEnabled(false);
+                mBTNBooking.setBackgroundColor(getResources().getColor(R.color.colorLightBlueDisabled));
+                break;
+            }
         }
 
     }
