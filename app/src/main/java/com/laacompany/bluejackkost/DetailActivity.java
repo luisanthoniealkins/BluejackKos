@@ -109,7 +109,6 @@ public class DetailActivity extends AppCompatActivity {
             }, YYYY, MM, DD);
         datePickerDialog.getDatePicker().setMinDate(today.getTimeInMillis());
         datePickerDialog.show();
-
     }
 
     public void book(String date){
@@ -119,6 +118,5 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, "Booking Successful!", Toast.LENGTH_SHORT).show();
         finish();
     }
-
 
 }

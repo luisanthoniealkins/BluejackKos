@@ -139,72 +139,54 @@
                         app:hintTextColor="@android:color/black"
                         android:textAlignment="center"/>
                 </LinearLayout>
+            </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_register_til_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true"
+                    app:counterEnabled="true"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_register_edt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_register_til_cpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true"
+                    app:counterEnabled="true"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_register_edt_cpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Confirmation Password"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
-
-
+                <CheckBox
+                    android:id="@+id/id_register_cb_terms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_vertical"
+                    android:text="Terms and Condition"
+                    android:buttonTint="@color/colorPrimary"/>
 
             </LinearLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/id_register_til_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                app:counterEnabled="true"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/id_register_edt_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColor="@android:color/black"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/id_register_til_cpassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true"
-                app:counterEnabled="true"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/id_register_edt_cpassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Confirmation Password"
-                    android:inputType="textPassword"
-                    android:textColor="@android:color/black"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <CheckBox
-                android:id="@+id/id_register_cb_terms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_vertical"
-                android:text="Terms and Condition"
-                android:buttonTint="@color/colorPrimary"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/id_register_til_terms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true"/>
-
-
-        </LinearLayout>
-
     </ScrollView>
-
-
 
     <Button
         android:id="@+id/id_register_btn_register"

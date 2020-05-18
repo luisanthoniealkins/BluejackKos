@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mETUsername,mETPassword;
     SQLiteDatabase database;
 
-
     public static Intent newIntent(Context packageContext){
         return new Intent(packageContext, LoginActivity.class);
     }
@@ -54,8 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         init();
         requestAppPermissions();
     }
-
-
 
     public void clickLogin(View view) {
 
@@ -98,16 +95,25 @@ public class LoginActivity extends AppCompatActivity {
         if (!valid) return null;
 
         for(User user : Handler.sUsers){
-            if (user.getUsername().equals(login_username) && user.getPassword().equals(login_password)) {
-                return user;
+            if (user.getUsername().equals(login_username)){
+                if(user.getPassword().equals(login_password)) {
+                    return user;
+                } else {
+                    valid = false;
+                }
             }
         }
 
-        mTILUsername.setError("Username and Password not matched");
-        mTILPassword.setError("Username and Password not matched");
+        //user found with mismatched credentials
+        if(!valid){
+            mTILUsername.setError("Username and Password not matched");
+            mTILPassword.setError("Username and Password not matched");
+        } else {
+            mTILUsername.setError("Username not found");
+            mTILPassword.setError("Username not found");
+        }
         return null;
     }
-
 
     public void clickRegister(View view) {
         startActivity(RegisterActivity.newIntent(this));
@@ -139,4 +145,5 @@ public class LoginActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.READ_PHONE_STATE}, 0);
     }
+
 }

@@ -39,7 +39,6 @@ public class Handler {
         sCurrentBookings = getCurrentUserBookings();
     }
 
-
     public static String getUserID(){
         String user_id = "US";
         int idx = sUsers.size();
@@ -58,7 +57,6 @@ public class Handler {
         else booking_id += idx;
         return booking_id;
     }
-
 
     public static void insertUser(User user){
         SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();
@@ -92,7 +90,6 @@ public class Handler {
         cursor.close();
         return users;
     }
-
 
     public static void insertBooking(Booking booking){
         SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();

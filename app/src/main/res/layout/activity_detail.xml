@@ -16,7 +16,7 @@
         android:scaleType="fitXY"
         android:padding="2dp"
         android:background="@color/colorPrimaryDark"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <TextView
         android:id="@+id/id_detail_tv_name"
@@ -76,8 +76,7 @@
                 android:text="Address"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:layout_marginTop="16dp"
-                />
+                android:layout_marginTop="16dp"/>
 
             <TextView
                 android:id="@+id/id_detail_tv_address"
@@ -97,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -122,19 +122,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Longitude : "
                             android:textSize="20sp"
-                            android:textColor="@android:color/black" />
+                            android:textColor="@android:color/black"/>
 
                         <TextView
                             android:id="@+id/id_detail_tv_longitude"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:layout_marginStart="8dp" />
+                            android:layout_marginStart="8dp"/>
+
                     </LinearLayout>
 
 
@@ -153,8 +155,6 @@
         </LinearLayout>
 
     </ScrollView>
-
-
 
     <Button
         android:id="@+id/id_detail_btn_booking"
