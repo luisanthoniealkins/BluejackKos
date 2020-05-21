@@ -32,7 +32,6 @@ public class BookingActivity extends AppCompatActivity {
         mRVBookingList.setLayoutManager(new LinearLayoutManager(this));
         bookingAdapter = new BookingAdapter(this, Handler.sCurrentBookings);
         mRVBookingList.setAdapter(bookingAdapter);
-
     }
 
     @Override
