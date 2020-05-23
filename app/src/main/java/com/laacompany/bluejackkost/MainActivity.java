@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String JSON_LINK =  "https://bit.ly/2zd4uhX";
     private boolean canShowBooking = false;
 
+    //MENU
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void init(){
         mTVLoading = findViewById(R.id.id_main_tv_loading);
         mRVBoardingHouse = findViewById(R.id.id_main_rv_boarding_house);
@@ -99,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
-
-
         String sp_value = getSharedPreferences(Handler.SP_USER, MODE_PRIVATE).getString(Handler.SP_KEY_ID, "empty");
         if (sp_value.equals("empty")){
             startActivity(LoginActivity.newIntent(this));
@@ -109,13 +109,11 @@ public class MainActivity extends AppCompatActivity {
             Handler.init_bookings();
         }
 
-
         try {
             run();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
