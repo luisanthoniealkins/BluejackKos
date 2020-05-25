@@ -39,7 +39,6 @@ public class Booking {
     }
 
     public String getBookingDate() {
-        Log.d("12345", bookingDate);
         return bookingDate;
     }
 

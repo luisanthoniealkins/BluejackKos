@@ -1,14 +1,10 @@
 package com.laacompany.bluejackkost.Database;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 
 import androidx.annotation.Nullable;
-
-import com.laacompany.bluejackkost.Database.DBSchema;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

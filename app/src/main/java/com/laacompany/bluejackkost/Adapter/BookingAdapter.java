@@ -1,6 +1,5 @@
 package com.laacompany.bluejackkost.Adapter;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,17 +49,14 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingH
         return mBookings.size();
     }
 
-    public void setBookings(ArrayList<Booking> bookings){
-        mBookings = bookings;
-    }
 
-    public class BookingHolder extends RecyclerView.ViewHolder{
+    class BookingHolder extends RecyclerView.ViewHolder{
 
         private ImageView mIVPreview;
         private TextView mTVBookId, mTVName, mTVFacility, mTVPrice, mTVDate;
         private Button mBTDelete;
 
-        public BookingHolder(LayoutInflater inflater, @NonNull ViewGroup parent) {
+        BookingHolder(LayoutInflater inflater, @NonNull ViewGroup parent) {
             super(inflater.inflate(R.layout.item_booking,parent,false));
 
             mIVPreview = itemView.findViewById(R.id.id_item_book_imv_preview);
@@ -73,7 +68,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingH
             mBTDelete = itemView.findViewById(R.id.id_item_book_btn_delete);
         }
 
-        public void bind(final Booking booking){
+        void bind(final Booking booking){
 
             int pos = Integer.parseInt(booking.getbHouseId())-1;
             BHouse bHouse = Handler.sBHouses.get(pos);

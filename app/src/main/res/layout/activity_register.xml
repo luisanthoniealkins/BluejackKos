@@ -11,7 +11,7 @@
         android:id="@+id/id_register_form_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/activity_register_title"
         android:textSize="30sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -42,7 +42,7 @@
                     android:id="@+id/id_register_edt_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username"
+                    android:hint="@string/activity_register_username"
                     android:inputType="text"
                     android:textColor="@android:color/black"/>
 
@@ -59,7 +59,7 @@
                     android:id="@+id/id_register_edt_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number"
+                    android:hint="@string/activity_register_phone_number"
                     android:inputType="number"
                     android:textColor="@android:color/black"/>
 
@@ -75,7 +75,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Gender:"
+                    android:text="@string/activity_register_gender"
                     android:textSize="18sp"
                     android:layout_gravity="center_vertical" />
 
@@ -90,14 +90,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="25dp"
-                        android:text="Male"
+                        android:text="@string/activity_register_male"
                         android:buttonTint="@color/colorPrimary"/>
 
                     <RadioButton
                         android:id="@+id/id_register_rb_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Female"
+                        android:text="@string/activity_register_female"
                         android:layout_marginEnd="25dp"
                         android:buttonTint="@color/colorPrimary"/>
 
@@ -114,7 +114,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date of Birth:"
+                    android:text="@string/activity_register_date_of_birth"
                     android:textSize="18sp"
                     android:layout_gravity="center_vertical" />
 
@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:onClick="clickDOB"
-                        android:text="SELECT DATE"
+                        android:text="@string/activity_register_select_date"
                         android:background="@color/colorLightBlue"
                         android:textColor="@android:color/white"/>
 
@@ -158,7 +158,7 @@
                         android:id="@+id/id_register_edt_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="@string/activity_register_password"
                         android:inputType="textPassword"
                         android:textColor="@android:color/black"/>
 
@@ -176,7 +176,7 @@
                         android:id="@+id/id_register_edt_cpassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Confirmation Password"
+                        android:hint="@string/activity_register_confirmation_password"
                         android:inputType="textPassword"
                         android:textColor="@android:color/black"/>
 
@@ -188,7 +188,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding_vertical"
-                    android:text="Terms and Condition"
+                    android:text="@string/activity_register_terms_and_condition"
                     android:buttonTint="@color/colorPrimary"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -207,7 +207,7 @@
         android:id="@+id/id_register_btn_register"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="Register"
+        android:text="@string/activity_register_register"
         android:onClick="clickRegister"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"

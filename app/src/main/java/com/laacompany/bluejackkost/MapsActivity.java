@@ -13,11 +13,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
-    private GoogleMap mMap;
 
     private static final String EXTRA_LAT = "extra_latitude";
     private static final String EXTRA_LNG = "extra_longitude";
@@ -36,20 +33,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
         double latitude = getIntent().getDoubleExtra(EXTRA_LAT,0);
         double longitude = getIntent().getDoubleExtra(EXTRA_LNG, 0);
         String name = getIntent().getStringExtra(EXTRA_NAME);
         LatLng bHouse = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(bHouse).title(name));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(bHouse));
-        mMap.setMinZoomPreference(14);
+        googleMap.addMarker(new MarkerOptions().position(bHouse).title(name));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(bHouse));
+        googleMap.setMinZoomPreference(14);
     }
 
 }

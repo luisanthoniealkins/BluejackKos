@@ -1,5 +1,6 @@
 package com.laacompany.bluejackkost;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,22 +17,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BookingActivity extends AppCompatActivity {
 
+    @SuppressLint("StaticFieldLeak")
     private static TextView mTVNoBookings;
-    private RecyclerView mRVBookingList;
-    private BookingAdapter bookingAdapter;
 
     public static Intent newIntent(Context packageContext) {
-        Intent intent = new Intent(packageContext, BookingActivity.class);
-        return intent;
+        return new Intent(packageContext, BookingActivity.class);
     }
 
     private void init() {
         mTVNoBookings = findViewById(R.id.id_booking_tv_no_booking);
-        mRVBookingList = findViewById(R.id.id_booking_rv_booking);
+        RecyclerView RVBookingList = findViewById(R.id.id_booking_rv_booking);
 
-        mRVBookingList.setLayoutManager(new LinearLayoutManager(this));
-        bookingAdapter = new BookingAdapter(this, Handler.sCurrentBookings);
-        mRVBookingList.setAdapter(bookingAdapter);
+        RVBookingList.setLayoutManager(new LinearLayoutManager(this));
+        BookingAdapter bookingAdapter = new BookingAdapter(this, Handler.sCurrentBookings);
+        RVBookingList.setAdapter(bookingAdapter);
     }
 
     @Override

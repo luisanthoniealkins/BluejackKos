@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.laacompany.bluejackkost.Database.DBSchema;
 import com.laacompany.bluejackkost.Database.DBSchema.BookingTable;
 import com.laacompany.bluejackkost.Database.DBSchema.UserTable;
 import com.laacompany.bluejackkost.Database.DatabaseHelper;
@@ -13,7 +12,6 @@ import com.laacompany.bluejackkost.ObjectClass.BHouse;
 import com.laacompany.bluejackkost.ObjectClass.Booking;
 import com.laacompany.bluejackkost.ObjectClass.User;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Handler {
@@ -26,11 +24,11 @@ public class Handler {
 
     public static final String SP_USER = "sharedpreferences_user";
     public static final String SP_KEY_ID = "key_userid";
-    public static final String SP_KEY_BOOKING = "key_bookingnumber";
+    private static final String SP_KEY_BOOKING = "key_bookingnumber";
 
     public static void init(Context context){
         sDatabaseHelper = new DatabaseHelper(context);
-        sBHouses = new ArrayList<BHouse>();
+        sBHouses = new ArrayList<>();
         sUsers = getAllUser();
         sCurrentUser = "%empty.value%";
     }
@@ -73,8 +71,8 @@ public class Handler {
         return values;
     }
 
-    public static ArrayList<User> getAllUser(){
-        ArrayList<User> users = new ArrayList<User>();
+    private static ArrayList<User> getAllUser(){
+        ArrayList<User> users = new ArrayList<>();
 
         SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();
         Cursor cursor = db.query(UserTable.NAME,null, null, null, null, null, null);
@@ -113,7 +111,7 @@ public class Handler {
         db.close();
     }
 
-    public static ArrayList<Booking> getCurrentUserBookings(){
+    private static ArrayList<Booking> getCurrentUserBookings(){
         ArrayList<Booking> bookings = new ArrayList<>();
 
         SQLiteDatabase db = sDatabaseHelper.getWritableDatabase();

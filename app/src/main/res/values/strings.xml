@@ -3,4 +3,26 @@
     <string name="title_activity_maps">Map</string>
     <string name="booking_item_cancel">Cancel</string>
     <string name="no_booking_transaction">No Booking Transaction</string>
+    <string name="activity_detail_facilities">Facilities</string>
+    <string name="activity_detail_address">Address</string>
+    <string name="activity_detail_latitude">Latitude :</string>
+    <string name="activity_detail_longitude">Longitude :</string>
+    <string name="activity_detail_booking">Booking</string>
+    <string name="activity_login_username">Username</string>
+    <string name="activity_login_password">Password</string>
+    <string name="activity_login_register">Register</string>
+    <string name="activity_login_login">Login</string>
+    <string name="activity_main_loading">Retrieving Data, Please Wait</string>
+    <string name="activity_register_title">Registration</string>
+    <string name="activity_register_username">Username</string>
+    <string name="activity_register_phone_number">Phone Number</string>
+    <string name="activity_register_gender">Gender:</string>
+    <string name="activity_register_male">Male</string>
+    <string name="activity_register_female">Female</string>
+    <string name="activity_register_date_of_birth">Date of Birth:</string>
+    <string name="activity_register_select_date">SELECT DATE</string>
+    <string name="activity_register_password">Password</string>
+    <string name="activity_register_confirmation_password">Confirmation Password</string>
+    <string name="activity_register_terms_and_condition">Terms and Condition</string>
+    <string name="activity_register_register">Register</string>
 </resources>

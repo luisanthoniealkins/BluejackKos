@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/black"
                     android:inputType="text"
-                    android:hint="Username"/>
+                    android:hint="@string/activity_login_username"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:backgroundTint="@android:color/black"
-                    android:hint="Password"/>
+                    android:hint="@string/activity_login_password"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +93,7 @@
         android:id="@+id/id_login_form_register"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:text="Register"
+        android:text="@string/activity_login_register"
         android:onClick="clickRegister"
         android:textSize="16sp"
         tools:ignore="ButtonStyle"
@@ -111,7 +111,7 @@
         android:layout_marginBottom="4dp"
         android:backgroundTint="@color/colorLightBlue"
         android:onClick="clickLogin"
-        android:text="Login"
+        android:text="@string/activity_login_login"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         tools:ignore="ButtonStyle"/>

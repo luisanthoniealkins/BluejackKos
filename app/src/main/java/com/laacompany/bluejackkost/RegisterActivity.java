@@ -1,27 +1,20 @@
 package com.laacompany.bluejackkost;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-
 import android.telephony.SmsManager;
-import android.telephony.SubscriptionInfo;
-import android.telephony.SubscriptionManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.laacompany.bluejackkost.Handle.Handler;
@@ -38,8 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private CheckBox mCBTerms;
 
     public static Intent newIntent(Context packageContext) {
-        Intent intent = new Intent(packageContext, RegisterActivity.class);
-        return intent;
+        return new Intent(packageContext, RegisterActivity.class);
     }
 
     private void init() {
@@ -98,7 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
         //USERNAME
         boolean usernameHasAlphabet = false, usernameHasNumber = false;
         for (int i = 0; i < username.length(); ++i) {
-            Character character = username.charAt(i);
+            char character = username.charAt(i);
             if (usernameHasAlphabet && usernameHasNumber) {
                 break;
             } else if ((character >= 'A' && character <= 'Z') || (character >= 'a' && character <= 'z')) {
@@ -127,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
         //PASSWORD
         boolean passwordHasUppercase = false, passwordHasLowercase = false, passwordHasNumber = false;
         for (int i = 0; i < password.length(); ++i) {
-            Character character = password.charAt(i);
+            char character = password.charAt(i);
             if (passwordHasUppercase && passwordHasLowercase && passwordHasNumber) {
                 break;
             } else if (character >= 'A' && character <= 'Z') {
@@ -156,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
         //PHONE
         boolean phoneIsNumeric = true;
         for (int i = 0; i < phone.length(); ++i) {
-            Character character = phone.charAt(i);
+            char character = phone.charAt(i);
             if (!Character.isDigit(character)) {
                 phoneIsNumeric = false;
                 break;
@@ -194,7 +186,6 @@ public class RegisterActivity extends AppCompatActivity {
         String sms_message = "Registration Successful!";
         Toast.makeText(this, sms_message, Toast.LENGTH_SHORT).show();
         SmsManager.getDefault().sendTextMessage(phone, null, sms_message, null, null);
-//        SmsManager.getSmsManagerForSubscriptionId( SubscriptionManager.from(this).getActiveSubscriptionInfoList().get(1).getSubscriptionId()).sendTextMessage(phone, "123", sms_message, null, null);
         finish();
     }
 

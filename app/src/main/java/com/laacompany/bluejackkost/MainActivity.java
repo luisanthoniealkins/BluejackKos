@@ -2,11 +2,9 @@ package com.laacompany.bluejackkost;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -22,11 +20,13 @@ import com.laacompany.bluejackkost.Adapter.BoardingHouseAdapter;
 import com.laacompany.bluejackkost.Handle.Handler;
 import com.laacompany.bluejackkost.ObjectClass.BHouse;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -109,11 +109,7 @@ public class MainActivity extends AppCompatActivity {
             Handler.init_bookings();
         }
 
-        try {
-            run();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        run();
     }
 
     @Override
@@ -131,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         canShowBooking = true;
     }
 
-    void run() throws IOException {
+    void run() {
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -139,13 +135,13 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 call.cancel();
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String myResponse = response.body().string();
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                final String myResponse = Objects.requireNonNull(response.body()).string();
 
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override

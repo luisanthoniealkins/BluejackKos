@@ -1,5 +1,6 @@
 package com.laacompany.bluejackkost;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -100,7 +101,7 @@ public class DetailActivity extends AppCompatActivity {
             new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int YYYY, int MM, int DD) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd MMM YYYY");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd MMM YYYY");
                     GregorianCalendar gc = new GregorianCalendar(YYYY,MM,DD);
                     Date date = new Date(gc.getTimeInMillis());
                     String string_date = sdf.format(date);

@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Facilities"
+                android:text="@string/activity_detail_facilities"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
@@ -73,7 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Address"
+                android:text="@string/activity_detail_address"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="16dp"/>
@@ -105,7 +105,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Latitude : "
+                            android:text="@string/activity_detail_latitude"
                             android:textColor="@android:color/black"
                             android:textSize="20sp"/>
 
@@ -126,7 +126,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Longitude : "
+                            android:text="@string/activity_detail_longitude"
                             android:textSize="20sp"
                             android:textColor="@android:color/black"/>
 
@@ -139,16 +139,16 @@
 
                     </LinearLayout>
 
-
-
                 </LinearLayout>
-                    <ImageButton
-                        android:id="@+id/id_detail_btn_map"
-                        android:layout_width="55dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_maps"
-                        android:backgroundTint="@color/colorLightBlue"
-                        android:onClick="clickMaps"/>
+
+                <ImageButton
+                    android:id="@+id/id_detail_btn_map"
+                    android:layout_width="55dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_maps"
+                    android:backgroundTint="@color/colorLightBlue"
+                    android:onClick="clickMaps"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -160,7 +160,7 @@
         android:id="@+id/id_detail_btn_booking"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="Booking"
+        android:text="@string/activity_detail_booking"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:textSize="16sp"

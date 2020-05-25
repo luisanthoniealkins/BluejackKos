@@ -53,7 +53,7 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
         private ImageView mIVPreview;
         private TextView mTVName,mTVFacility,mTVPrice;
 
-        public BHouseHolder(LayoutInflater inflater, @NonNull ViewGroup parent) {
+        BHouseHolder(LayoutInflater inflater, @NonNull ViewGroup parent) {
             super(inflater.inflate(R.layout.item_boarding_house,parent,false));
 
             mIVPreview = itemView.findViewById(R.id.id_item_imv_preview);
@@ -64,7 +64,7 @@ public class BoardingHouseAdapter extends RecyclerView.Adapter<BoardingHouseAdap
             itemView.setOnClickListener(this);
         }
 
-        public void bind(BHouse bHouse, int position){
+        void bind(BHouse bHouse, int position){
             this.position = position;
 
             Glide.with(mContext)
